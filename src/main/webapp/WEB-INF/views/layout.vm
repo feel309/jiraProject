@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Spring MVC 및 velocity</title>
+    </head>
+    <body>
+        <h1> Spring MVC와 velocity </h1>
+        ${greeting}
+    </ body>
+</html>

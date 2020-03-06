@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="issue">
+   
+   <insert id="insertIssue" parameterType="issue" useGeneratedKeys="true" keyProperty="issue_no">
+   		insert into issue(summary, assignee, description, status, reg_id, reg_dt, mod_id, mod_dt) values(#{summary}, #{assignee}, #{description}, 0, #{reg_id}, default, #{mod_id}, default)
+   </insert>
+   
+   <select id="selectIssueList" resultType="issue">
+   		select * from issue
+   </select>
+   
+   <select id="selectIssue" resultType="issue">
+    	select * from issue where issue_no = #{issue_no}
+   </select>
+
+</mapper>

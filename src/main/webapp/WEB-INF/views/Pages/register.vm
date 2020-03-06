@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="resources/css/sb-admin.css" rel="stylesheet">
+  
+  <!-- Bootstrap core CSS -->
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="resources/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="resources/css/landing-page.min.css" rel="stylesheet">
+	
+	
+	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+	
+	
+	<style>
+		div#id-result-div{display: none;}
+	</style>
+	
+<script>
+
+	$(document).ready(function(){	
+		$('#user_id').blur(function(){
+			var user_id=$('#user_id').val();
+			
+			 
+				$.ajax({
+					type:"POST",
+					url: "/checkId?user_id="+user_id,
+					success:function(result){
+						$("#id-result-div").show();
+						if(result!=0){							
+							$("#id_result").html("사용 불가능한 아이디입니다.").css('color', 'red');					
+						}else{							
+							$("#id_result").html("사용 가능한 아이디입니다.").css('color', 'green');					
+						}
+					},error:function(error){
+						$("#id_result").html("error");
+					}
+				});
+				
+		});
+	});
+	
+	
+	//정규식
+	$(document).ready(function(){
+		$("#inputPassword").keyup(function(){
+			var pw=$('#inputPassword').val();
+			
+			var checkSpe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?-]/gi);
+			var checkNumber = pw.search(/[0-9]/g);
+			var checkEnglish = pw.search(/[a-z]/ig);
+			
+			console.log(checkSpe);
+			
+			if(checkEnglish<0 || checkNumber<0 || checkSpe<0) {
+				$('#pw_validate').html("영문+숫자+특수문자").css('color', 'red');
+				$('#inputPassword').focus();
+			}else if(pw.trim().length<8 || pw.trim().length>20){
+				$('#pw_validate').html("8자리 이상 20자리 이하로 입력해주세요.").css('color', 'red');
+				$('#inputPassword').focus();
+			}else if(pw.indexOf(" ")>=0){
+				$('#pw_validate').html("공백 입력 불가").css('color', 'red');
+				$('#inputPassword').focus();
+			}else{
+				$('#pw_validate').html("사용 가능한 비밀번호입니다.").css('color', 'green');
+			}	
+		
+		});
+	});
+	
+	
+	$(document).ready(function(){
+		
+		$("#confirmPassword").blur(function(){
+			
+			var password=$('#inputPassword').val();
+			var password2=$('#confirmPassword').val();	
+			
+			if(password.trim()!=password2.trim()){
+				$('#password_result').html("비밀번호가 일치하지 않습니다.").css('color', 'red');
+				$('#confirmPassword').focus();
+			}else{
+				$('#password_result').html("비밀번호가 일치합니다.").css('color', 'green');	
+			}		
+		});
+	});
+	
+	
+</script>
+	
+	
+</head>
+
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Register an Account</div>
+      <div class="card-body">
+      
+       <!-- 회원 가입 -->
+        <form action="/signup" method="post" role="form" id="usercheck">
+          <div class="form-group">
+                <div class="form-label-group">
+                  <input type="text" name="user_id" id="user_id" class="form-control" required="required" autofocus="autofocus">
+                  <label for="inputUserid">User ID</label>
+				
+				<div class="enroll-item" id="id-result-div">
+					<div class="left"></div>
+					<div class="right">						
+						<span id="id_result"></span>						
+					</div>					
+				</div>
+					
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" name="pw" id="inputPassword" class="form-control" required="required">
+                  <label for="inputPassword">Password</label>
+                  	<div class="enroll-item">
+            			<span id="pw_validate"></span>
+            		</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" name="re_pw" id="confirmPassword" class="form-control" required="required">
+                  <label for="confirmPassword">Confirm password</label>
+                  <span id="password_result"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" name="name" id="inputName" class="form-control" required="required">
+              <label for="inputName">User Name</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" name="email" id="inputEmail" class="form-control" required="required">
+              <label for="inputEmail">Email address</label>
+            </div>
+          </div>
+          
+          <input class="btn btn-primary btn-block" type="submit" value="Register" id="submit">
+          <input class="btn btn-primary btn-block" type="button" value="Cancel" onclick="history.back();" >
+        </form>
+        
+        
+      </div>
+    </div>
+  </div>
+	
+	
+	
+  <!-- Bootstrap core JavaScript-->
+  <script src="resources/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

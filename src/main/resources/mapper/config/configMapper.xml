@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="config">
+   
+   <insert id="insertConfig" parameterType="config">
+   		insert into config values(#{key}, #{reg_id}, default, #{mod_id}, default, #{value})
+   </insert>
+   
+   <select id="selectConfigList" resultType="config">
+   		select * from config
+   </select>
+   
+
+</mapper>

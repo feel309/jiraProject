@@ -1,0 +1,104 @@
+<!-- Header Navigation -->
+	
+	  <!-- Custom fonts for this template-->
+  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="resources/css/sb-admin.css" rel="stylesheet">
+  
+  <!-- Bootstrap core CSS -->
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="resources/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="resources/css/landing-page.min.css" rel="stylesheet">
+	
+	
+		  
+	  <header>
+	  <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="mainNav">
+	    <div class="container">
+	      <a class="navbar-brand" href="/" style="color: white;">CURVC</a>
+	      <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	        Menu
+	        <i class="fas fa-bars"></i>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarResponsive">
+	        <ul class="navbar-nav ml-auto">
+	          
+	          <!-- $login이 True 일 때 로그인 성공 -->
+	          #if($user)
+	          
+	          <li class="nav-item">
+	            <a class="navbar-link btn btn-primary" href="/issueList">이슈 관리</a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="navbar-link btn btn-primary" href="/userList">사용자 관리</a>
+	             <!-- <a class="navbar-link btn btn-primary" href="/admin/userList">사용자 관리</a> -->
+	          </li>
+	          <li class="nav-item">
+	            <a class="navbar-link btn btn-primary" href="/jiraList">Jira 연동 설정</a>
+	            <!-- <a class="navbar-link btn btn-primary" href="/admin/jiraList">Jira 연동 설정</a> -->
+	          </li>
+	          <li class="nav-item">
+	            <a class="btn btn-primary" href="/issue/enrollpage"><button class="btn btn-secondary btn-sm">Create</button></a>
+	          </li>
+
+	           <li class="nav-item">
+	            <a class="navbar-link btn btn-primary" href="/logout">로그아웃</a>
+	          </li>
+	          
+	          
+ 			  
+	          <li class="nav-item">
+	            <a class="navbar-link btn btn-primary" href="/userList"></a>
+	          </li>
+	         
+	         
+			   <a class="nav-link" href="/userList" id="userDropdown" role="button">
+			          <i class="fas fa-user-circle fa-fw"></i>
+			   </a>
+			        
+	          
+	          
+	          <!-- $login이 False 일 때 로그인 전 화면 -->
+	          #else
+	         
+	          <li class="nav-item">
+	          	<a class="navbar-link btn btn-primary" href="/enrollpage">회원가입</a>
+	            <a class="navbar-link btn btn-primary" href="/loginpage">로그인</a>
+	          </li>
+	          #end
+	          
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  </header>
+	  
+	  
+	    <!-- Bootstrap core JavaScript-->
+  <script src="resources/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="resources/vendor/chart.js/Chart.min.js"></script>
+  <script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="resources/js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="resources/js/demo/datatables-demo.js"></script>
+  <script src="resources/js/demo/chart-area-demo.js"></script>
